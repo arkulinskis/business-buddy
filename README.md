@@ -1,0 +1,78 @@
+# Business Buddy
+
+A free knowledge base for people who want to open a small, one- or two-person business in **Montréal**: a barber shop,
+a bakery, a cleaning service, a food truck, a home daycare… For each kind of business it explains the permits, the
+borough, the taxes, the real costs, the money maths, and the advanced tricks, with links to the official sources.
+Members turn a guide into a private launch plan (checklist, notes, budget, opening date). Built on [Anvil](https://anvil.works).
+
+- **App repo:** github.com/arkulinskis/business-buddy (branch `master`). Anvil pulls `master`.
+- **Live:** not published yet (will be https://businessbuddy.anvil.app or a custom domain).
+- **Content checked:** October 2026 (`BB.updated` in `web/pages/_kb_core.html`). Fees and rules change every year.
+
+## What it does
+
+**For everyone (no account needed):**
+- **Guides** (`#library`, `#guide/<slug>`): 30 businesses in 6 categories (food & drink, beauty & wellness, home & trades,
+  kids/pets/learning, shops, services & creative). Search across guides, topics and the glossary at once (accents and
+  French words work), category chips, filters (can start at home, under $10k, no trade licence), sorting (most read,
+  cheapest, fastest, A–Z). Each guide: at a glance (startup cost range, time to open, difficulty, home possible),
+  permit cards (who issues it, cost, when, official page), what's special about that trade, one-time and monthly cost
+  tables with "money to open safely", the money maths, tips, "going deeper" (advanced), pitfalls, a roadmap preview,
+  official sources, related Basics, print, save, "was this helpful?" and "Report outdated info".
+- **The Basics** (`#basics`, `#topic/<slug>`): 21 topics in 6 stages (before you start, make it official, your place,
+  money & taxes, rules for your trade, people & customers): the launch roadmap, testing an idea, structures, registering
+  (NEQ), French-language rules, GST/QST, banking & books, income tax for the self-employed, pricing & cash flow,
+  financing, zoning & the certificate of occupancy, working from home, commercial leases, renovation/sign/terrace
+  permits, MAPAQ food permits, construction licences (RBQ/CMEQ/CMMTQ), insurance, hiring, partners, consumer
+  protection, Law 25, marketing. Each has the basics and an "Advanced: going deeper" part.
+- **Tools** (`#tools/<tool>`): permit finder (questions → the permits and registrations that apply, with why), break-even,
+  GST/QST calculator, $30,000 small-supplier tracker, hourly rate, "which structure?" quiz. Answers stay in the browser.
+- **Glossary** (`#glossary`): 42 French ⇄ English terms from the forms and counters, filterable.
+- A landing page, sign-up, feedback form, Privacy & Terms (with a "general information, not advice" clause).
+
+**For members:**
+- **Dashboard** (`#home`): plans with a progress ring, opening countdown, budget and the next 3 steps; saved pages; the
+  tax calendar; popular guides; how many people are building a plan.
+- **Launch plans** (`#plan/new/<guide>`, `#plan/<id>`): the universal 6-phase Montréal checklist filtered for the
+  business (premises / home / food tasks) plus the guide's own tasks; tick steps (confetti when a phase is done), a note
+  on any step, a budget sheet pre-filled with the guide's typical costs, details (name, borough, opening date, "I'll hire"
+  adds the employer steps), delete. Up to 12 plans each; private.
+- **Save** any guide or topic to the dashboard.
+
+**For admins** (`#admin`; arkulinskis@gmail.com becomes an admin on first sign-in):
+- **Overview:** people, admins, new feedback, launch plans, helpful votes.
+- **Content:** every guide and topic with views, % helpful and plans built on it (what to update first).
+- **Feedback inbox** (incl. outdated-info reports), **Users**, **Demo data** (4 fictional founders with plans, votes and
+  page views so the statistics aren't empty; remove or reload).
+
+## Setting it up in Anvil (once)
+
+1. In the Anvil editor: **Create app → Clone from GitHub**, and paste `https://github.com/arkulinskis/business-buddy`.
+2. **Users** service: email + password, sign-up allowed (already set in `anvil.yaml`; check it).
+3. Open the app in the editor. If it shows a **Schema Mismatch** alert, choose **"The schema of the source code is correct"** so Anvil creates the tables.
+4. **Run** it and sign up with **arkulinskis@gmail.com** straight away (that account becomes the admin).
+5. **Publish** (Publish → public URL, or your own domain).
+
+## Working on it
+
+See `.claude/skills/businessbuddy/SKILL.md`. In short:
+
+```
+python -I tools/check.py --ui                    # syntax, server tests, headless UI tests → ALL CHECKS PASSED
+python -I tools/preview/devserver.py 8765        # the app on in-memory data: http://localhost:8765/  (?as=ana#home, ?as=admin#admin)
+python tools/deploy.py                           # dry run (needs PyYAML, so no -I)
+python tools/deploy.py --push "Message"          # deploy: commit + push to GitHub, Anvil pulls it
+```
+
+## Project layout
+
+```
+web/            the interface: core.js/core.css (shared engine + design tokens), app.js (header, footer), pages/*.html
+web/pages/_kb_* the knowledge base content: _kb_core (phases, checklist tasks, permits, glossary), _kb_topics (Basics),
+                _kb_guides_1..3 (the 30 business guides), _kb_ui (helpers, icons, cards, search, plan builder, illustration)
+client_code/    Main.py (the only Anvil form: bridge to the server, sign-in), legal.py
+server_code/    common.py, Accounts.py, Feedback.py, Admin.py, DemoData.py, legal_server.py,
+                Library.py (views, votes, bookmarks), Plans.py (launch plans, dashboard)
+assets/         icon.svg (a striped-awning shopfront) + generated PNG icons
+tools/          sync_to_anvil.py (settings + table schema), deploy.py, check.py, preview/ (dev server, UI tests, screenshots), testing/
+```
