@@ -6,7 +6,7 @@ borough, the taxes, the real costs, the money maths, and the advanced tricks, wi
 Members turn a guide into a private launch plan (checklist, notes, budget, opening date). Built on [Anvil](https://anvil.works).
 
 - **App repo:** github.com/arkulinskis/business-buddy (branch `master`). Anvil pulls `master`.
-- **Live:** not published yet (will be https://businessbuddy.anvil.app or a custom domain).
+- **Live:** https://business-buddy.anvil.app
 - **Content checked:** October 2026 (`BB.updated` in `web/pages/_kb_core.html`). Fees and rules change every year.
 
 ## What it does
