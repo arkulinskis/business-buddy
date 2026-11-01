@@ -327,7 +327,7 @@ metadata:
   title: 'Business Buddy: how to start a small business in Montréal'
 name: Business Buddy
 native_deps:
-  head_html: "<script src=\"_/theme/legal-kit.js?v=23753eda12\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/businessbuddy.json\
+  head_html: "<script src=\"_/theme/legal-kit.js?v=549539d4f8\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/businessbuddy.json\
     \ and run seo.py, not here) -->\n<link rel=\"canonical\" href=\"https://business-buddy.anvil.app/\">\n<meta name=\"robots\"\
     \ content=\"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n<meta name=\"keywords\" content=\"\
     start a business in Montreal, small business permits Montreal, how to open a café in Montreal, Quebec business registration,\
