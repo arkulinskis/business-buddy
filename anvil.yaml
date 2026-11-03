@@ -327,7 +327,7 @@ metadata:
   title: 'Business Buddy: how to start a small business in Montréal'
 name: Business Buddy
 native_deps:
-  head_html: "<script src=\"_/theme/legal-kit.js?v=ce9e50b83e\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/businessbuddy.json\
+  head_html: "<script src=\"_/theme/legal-kit.js?v=fee5d36db1\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/businessbuddy.json\
     \ and run seo.py, not here) -->\n<link rel=\"canonical\" href=\"https://business-buddy.anvil.app/\">\n<meta name=\"robots\"\
     \ content=\"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n<meta name=\"keywords\" content=\"\
     start a business in Montreal, small business permits Montreal, how to open a café in Montreal, Quebec business registration,\
@@ -373,7 +373,7 @@ native_deps:
     })();\n</script>\n\n<!-- Prepsto feedback panel: every \"Submit feedback\" link and button opens it (it is the only feedback\
     \ channel). No floating button, no cookies, nothing loads until it is opened. Codes: APP_MAKER/prepsto-links.json -->\n\
     <script src=\"https://prepsto.com/_/theme/widget.js\" data-prepsto=\"zgumsku\" data-button=\"false\" data-label=\"Submit\
-    \ feedback\" async></script>\n<link rel=\"stylesheet\" href=\"_/theme/app.css?v=38e52f0670\">\n<script src=\"_/theme/app.js?v=d5f8572683\"\
+    \ feedback\" async></script>\n<link rel=\"stylesheet\" href=\"_/theme/app.css?v=094e3cbffa\">\n<script src=\"_/theme/app.js?v=67d4347b06\"\
     ></script>\n"
 package_name: Business_Buddy
 runtime_options:
