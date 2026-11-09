@@ -1,7 +1,8 @@
 """Run the app for real in the open-source Anvil App Server (Docker) and drive it with headless Chrome.
 
-    python -I tools/ui_test.py                 the user journey (tools/ui/flow.js), the phone-width check (phone.js), admin (admin.js),
-                                               accessibility (a11y.js: axe-core WCAG 2.2 AA on every page + keyboard checks)
+    python -I tools/ui_test.py                 the smoke test (tools/ui/smoke.js): every page address signed out, as a member and as
+                                               admin, desktop + phone width; fails on errors, empty pages or sideways scrolling
+                                               (a11y.js: axe-core WCAG 2.2 AA, and design.js run only with --only)
     python -I tools/ui_test.py --shots DIR     also screenshots of every page (desktop + phone, light + dark) into DIR
     python -I tools/ui_test.py --stop          stop the local server afterwards
     python -I tools/ui_test.py --only a11y.js  one script (flow.js, phone.js, admin.js, a11y.js or design.js)
@@ -126,9 +127,10 @@ def main():
     out = pathlib.Path(tempfile.mkdtemp(prefix=KEY + "-ui-"))
     failed = False
     only = args[args.index("--only") + 1] if "--only" in args else None  # e.g. --only a11y.js
-    for script, window in (("flow.js", "1280,1000"), ("phone.js", "390,844"), ("admin.js", "1280,1000"), ("a11y.js", "1280,1000"),
+    # smoke.js (every address, signed out / member / admin) runs by default; a11y.js and design.js only with --only
+    for script, window in (("smoke.js", "1280,1000"), ("smoke.js", "390,844"), ("a11y.js", "1280,1000"),
                            ("design.js", "1280,1000"), ("design.js", "390,844")):
-        if only and script != only:
+        if (only and script != only) or (not only and script != "smoke.js"):
             continue
         text = drive(script, window, out / (script.replace(".js", "") + ("-phone" if window.startswith("390") else "")))
         res = result(text)

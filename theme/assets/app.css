@@ -370,6 +370,7 @@ html.ui-dark .bb-cat-services .bb-tile, html.ui-dark .bb-tile.services { backgro
 .bb-search { position: relative; }
 .bb-search .ic { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--c-faint); width: 20px; height: 20px; }
 .bb-search input[type=search] { padding-left: 46px; min-height: 54px; font-size: 1.05rem; border-radius: 12px; box-shadow: var(--shadow); }
+/* design-ok: repeating-stripes (the awning is the brand) */
 .bb-awning { height: 14px; background: repeating-linear-gradient(90deg, var(--c-stripe) 0 26px, var(--c-surface) 26px 52px);
   -webkit-mask: radial-gradient(13px at 13px 0, #000 98%, transparent) 0 0 / 26px 14px repeat-x; mask: radial-gradient(13px at 13px 0, #000 98%, transparent) 0 0 / 26px 14px repeat-x; }
 .bb-street { width: 100%; height: auto; display: block; }
@@ -1043,7 +1044,8 @@ anvil-dropzone { display: contents; }
 .tl-why { color: var(--c-ink) !important; margin-top: 3px; }
 .tl-permit-links { gap: 12px; margin-top: 4px; }
 .tl-always { margin-top: 14px; }
-.anvil-role-tl-opts .bb-chip { border-radius: 10px; font-weight: 500; font-size: .93rem; padding: 9px 13px; color: var(--c-ink); }
+.tl-grid > * { min-width: 0; }
+.anvil-role-tl-opts .bb-chip { white-space: normal; text-align: left; line-height: 1.25; border-radius: 10px; font-weight: 500; font-size: .93rem; padding: 9px 13px; color: var(--c-ink); }
 .anvil-role-tl-opts .bb-chip.on { background: var(--c-brand-soft); border-color: var(--c-brand); color: var(--c-ink); }
 
 /* home */
