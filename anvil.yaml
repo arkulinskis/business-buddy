@@ -350,7 +350,7 @@ native_deps:
     \ and more. Permits, taxes, costs and a personal launch plan.\", \"image\": \"https://business-buddy.anvil.app/_/theme/og-image.png\"\
     , \"serviceType\": \"Open a small business in Montréal, step by step\", \"provider\": {\"@id\": \"https://arkvital.com/#org\"\
     }, \"areaServed\": \"Worldwide\", \"availableChannel\": {\"@type\": \"ServiceChannel\", \"serviceUrl\": \"https://business-buddy.anvil.app/\"\
-    , \"name\": \"Web browser\"}, \"availableLanguage\": \"en\", \"offers\": {\"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\"\
+    , \"name\": \"Web browser\", \"availableLanguage\": \"en\"}, \"offers\": {\"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\"\
     : \"CAD\"}, \"audience\": {\"@type\": \"Audience\", \"audienceType\": \"People opening a one- or two-person business in\
     \ Montréal\"}}, {\"@type\": \"WebSite\", \"@id\": \"https://business-buddy.anvil.app/#site\", \"url\": \"https://business-buddy.anvil.app/\"\
     , \"name\": \"Business Buddy\", \"publisher\": {\"@id\": \"https://arkvital.com/#org\"}}, {\"@type\": \"Organization\"\
