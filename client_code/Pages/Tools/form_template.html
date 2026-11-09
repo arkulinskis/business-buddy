@@ -1,0 +1,134 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <section class="tl-head">
+        <h1>Work it out: free tools</h1>
+        <p class="muted tl-lead">Find the permits that apply to you, and check your numbers before you commit. Your answers stay in this browser.</p>
+      </section>
+      <nav class="ui-tabs" aria-label="Tools">
+        <a href="#tools/finder" anvil:name="tab_finder"><i class="ic ic-stamp"></i>Permit finder</a>
+        <a href="#tools/breakeven" anvil:name="tab_breakeven"><i class="ic ic-chart"></i>Break-even</a>
+        <a href="#tools/taxes" anvil:name="tab_taxes"><i class="ic ic-receipt"></i>GST/QST</a>
+        <a href="#tools/threshold" anvil:name="tab_threshold"><i class="ic ic-flag"></i>$30k tracker</a>
+        <a href="#tools/rate" anvil:name="tab_rate"><i class="ic ic-clock"></i>Hourly rate</a>
+        <a href="#tools/structure" anvil:name="tab_structure"><i class="ic ic-scale"></i>Which structure?</a>
+      </nav>
+
+      <!-- permit finder -->
+      <div class="tl-grid" anvil:name="finder_part">
+        <div class="ui-card">
+          <anvil-component type="RepeatingPanel" name="finder_panel" prop:item_template="Business_Buddy.Items.Question"></anvil-component>
+        </div>
+        <div class="ui-card tl-result">
+          <h2 class="tl-out-h"><i class="ic ic-stamp"></i><anvil-component type="Label" name="finder_title"></anvil-component></h2>
+          <anvil-component type="RepeatingPanel" name="finder_result" prop:item_template="Business_Buddy.Items.FinderPermit"></anvil-component>
+          <p class="muted" anvil:name="finder_none">With those answers, you may not need any registration yet: a sole proprietor under their own name, under $30,000, without premises. Still get insurance and keep good records.</p>
+          <p class="small muted tl-always">Always also: liability insurance, a business bank account, Law 25 if you collect customer info. Run <a href="https://bizpal-perle.ca/" target="_blank" rel="noopener">BizPaL</a> with your address for the complete official list.</p>
+        </div>
+      </div>
+
+      <!-- break-even -->
+      <div class="tl-grid" anvil:name="breakeven_part">
+        <div class="ui-card">
+          <h2 class="tl-form-h">Your numbers (per month)</h2>
+          <div class="tl-fields">
+            <label class="ui-field"><span>Fixed costs</span><anvil-component type="TextBox" name="be_fixed" prop:type="number"></anvil-component><p class="ui-hint">Rent, insurance, phone, software, loan payments.</p></label>
+            <label class="ui-field"><span>What you want to pay yourself</span><anvil-component type="TextBox" name="be_pay" prop:type="number"></anvil-component><p class="ui-hint">Before income tax.</p></label>
+            <label class="ui-field"><span>Average price per sale</span><anvil-component type="TextBox" name="be_price" prop:type="number"></anvil-component><p class="ui-hint">Before GST/QST.</p></label>
+            <label class="ui-field"><span>Variable cost per sale</span><anvil-component type="TextBox" name="be_varcost" prop:type="number"></anvil-component><p class="ui-hint">Ingredients, products, card fees.</p></label>
+            <label class="ui-field wide"><span>Days open per month</span><anvil-component type="TextBox" name="be_days" prop:type="number"></anvil-component></label>
+          </div>
+        </div>
+        <div class="ui-card tl-out">
+          <h2 class="tl-out-h"><i class="ic ic-chart"></i>To break even</h2>
+          <anvil-component type="Label" name="be_error" prop:text="Your price must be higher than the variable cost of each sale." prop:role='["msg-error"]'></anvil-component>
+          <div anvil:name="be_result">
+            <anvil-component type="Label" name="be_big" prop:role='["tl-big"]'></anvil-component>
+            <anvil-component type="Label" name="be_per_day" prop:role='["muted"]'></anvil-component>
+            <anvil-component type="RepeatingPanel" name="be_kv" prop:item_template="Business_Buddy.Items.Kv"></anvil-component>
+            <anvil-component type="Label" name="be_over" prop:text="At that level you're above the $30,000 small-supplier threshold: plan for GST/QST." prop:role='["msg-note"]'></anvil-component>
+            <anvil-component type="Label" name="be_tip" prop:role='["fine-print"]'></anvil-component>
+          </div>
+        </div>
+      </div>
+
+      <!-- GST / QST -->
+      <div class="tl-grid" anvil:name="taxes_part">
+        <div class="ui-card">
+          <h2 class="tl-form-h">GST 5% + QST 9.975%</h2>
+          <div class="tl-fields">
+            <label class="ui-field wide"><span>Amount ($)</span><anvil-component type="TextBox" name="tx_amount" prop:type="number"></anvil-component></label>
+            <div class="wide" role="group" aria-label="What the amount is">
+              <anvil-component type="RepeatingPanel" name="tx_mode" prop:item_template="Business_Buddy.Items.Chip" prop:role='["tl-opts"]'></anvil-component>
+            </div>
+          </div>
+        </div>
+        <div class="ui-card tl-out">
+          <h2 class="tl-out-h"><i class="ic ic-receipt"></i><anvil-component type="Label" name="tx_title"></anvil-component></h2>
+          <anvil-component type="Label" name="tx_big" prop:role='["tl-big"]'></anvil-component>
+          <anvil-component type="RepeatingPanel" name="tx_kv" prop:item_template="Business_Buddy.Items.Kv"></anvil-component>
+          <p class="small muted">Only charge these once you're registered. Small suppliers (under $30,000) don't charge them.</p>
+        </div>
+      </div>
+
+      <!-- $30k tracker -->
+      <div class="tl-grid" anvil:name="threshold_part">
+        <div class="ui-card">
+          <h2 class="tl-form-h">Your taxable sales, last four calendar quarters</h2>
+          <p class="muted small">Quarters are Jan–Mar, Apr–Jun, Jul–Sep, Oct–Dec. Count sales of you and any associated business.</p>
+          <div class="tl-fields">
+            <label class="ui-field"><span>Oldest quarter</span><anvil-component type="TextBox" name="th_q1" prop:type="number"></anvil-component></label>
+            <label class="ui-field"><span>Next quarter</span><anvil-component type="TextBox" name="th_q2" prop:type="number"></anvil-component></label>
+            <label class="ui-field"><span>The quarter after</span><anvil-component type="TextBox" name="th_q3" prop:type="number"></anvil-component></label>
+            <label class="ui-field"><span>Most recent quarter</span><anvil-component type="TextBox" name="th_q4" prop:type="number"></anvil-component></label>
+          </div>
+        </div>
+        <div class="ui-card tl-out">
+          <h2 class="tl-out-h"><i class="ic ic-flag"></i>Small supplier check</h2>
+          <div><anvil-component type="Label" name="th_big" prop:role='["tl-big"]'></anvil-component><span class="muted">over four quarters</span></div>
+          <div class="tl-meter" anvil:dom-node="th_meter" role="img"><i anvil:dom-node="th_bar"></i></div>
+          <anvil-component type="Label" name="th_pct" prop:role='["fine-print"]'></anvil-component>
+          <anvil-component type="Label" name="th_msg"></anvil-component>
+          <a class="small" href="#topic/gst-qst">How GST and QST work</a>
+        </div>
+      </div>
+
+      <!-- hourly rate -->
+      <div class="tl-grid" anvil:name="rate_part">
+        <div class="ui-card">
+          <h2 class="tl-form-h">What should you charge per hour?</h2>
+          <div class="tl-fields">
+            <label class="ui-field"><span>Yearly income you want ($)</span><anvil-component type="TextBox" name="rt_income" prop:type="number"></anvil-component><p class="ui-hint">Before income tax.</p></label>
+            <label class="ui-field"><span>Business expenses per year ($)</span><anvil-component type="TextBox" name="rt_expenses" prop:type="number"></anvil-component><p class="ui-hint">Tools, insurance, phone, software, car…</p></label>
+            <label class="ui-field"><span>Hours you work per week</span><anvil-component type="TextBox" name="rt_hours" prop:type="number"></anvil-component></label>
+            <label class="ui-field"><span>Billable share (%)</span><anvil-component type="TextBox" name="rt_billable" prop:type="number"></anvil-component><p class="ui-hint">Travel, admin, quotes and marketing aren't billable: 50–70% is common.</p></label>
+            <label class="ui-field wide"><span>Weeks off per year</span><anvil-component type="TextBox" name="rt_weeks" prop:type="number"></anvil-component><p class="ui-hint">Holidays, sick days, slow weeks.</p></label>
+          </div>
+        </div>
+        <div class="ui-card tl-out">
+          <h2 class="tl-out-h"><i class="ic ic-clock"></i>Your minimum rate</h2>
+          <anvil-component type="Label" name="rt_big" prop:role='["tl-big"]'></anvil-component>
+          <anvil-component type="RepeatingPanel" name="rt_kv" prop:item_template="Business_Buddy.Items.Kv"></anvil-component>
+          <p class="small muted">This is your floor. Check what clients pay competitors, then price for your value. Add GST/QST on top once registered.</p>
+        </div>
+      </div>
+
+      <!-- structure quiz -->
+      <div class="tl-grid" anvil:name="structure_part">
+        <div class="ui-card">
+          <anvil-component type="RepeatingPanel" name="sq_panel" prop:item_template="Business_Buddy.Items.Question"></anvil-component>
+        </div>
+        <div class="ui-card tl-out">
+          <h2 class="tl-out-h"><i class="ic ic-scale"></i>Our suggestion</h2>
+          <anvil-component type="Label" name="sq_title" prop:role='["tl-big", "tl-big-sm"]'></anvil-component>
+          <anvil-component type="Label" name="sq_why"></anvil-component>
+          <div class="ui-row">
+            <a class="ui-btn sm" href="#topic/structure">Compare the structures</a>
+            <a class="ui-btn sm" href="#topic/partners" anvil:name="sq_partners">Starting with a partner</a>
+          </div>
+          <p class="small muted">A rule-of-thumb quiz, not tax advice.</p>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

@@ -1,0 +1,18 @@
+---
+custom_component: true
+properties: []
+toolbox_item:
+  title: Was this helpful?
+  group: Business Buddy
+help_text: |
+  The "Was this page helpful?" box under a guide or topic: Yes / Not really (vote, one per person or browser
+  session), the counts, and "Report outdated info" (opens the Prepsto feedback panel). setup(kind, slug, state).
+---
+<div class="bb-vote">
+  <strong class="bb-vote-q">Was this page helpful?</strong>
+  <anvil-component type="Button" name="yes_button" prop:text="Yes" prop:role='["btn", "btn-sm", "ic-thumb"]'></anvil-component>
+  <anvil-component type="Button" name="no_button" prop:text="Not really" prop:role='["btn", "btn-sm", "ic-thumbdown"]'></anvil-component>
+  <span class="ui-spacer"></span>
+  <anvil-component type="Label" name="counts" prop:text="Be the first to say" prop:role='["fine-print"]'></anvil-component>
+  <anvil-component type="Button" name="report_button" prop:text="Report outdated info" prop:role='["btn", "btn-sm", "btn-ghost", "ic-flag"]'></anvil-component>
+</div>

@@ -1,0 +1,21 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <section class="gl-head">
+        <nav class="gd-crumbs" aria-label="Breadcrumb"><a href="#basics">The Basics</a><span aria-hidden="true">›</span><span>Glossary</span></nav>
+        <h1>French ⇄ English glossary</h1>
+        <p class="muted gl-lead">The words on the forms and at the counter, with what they mean for your business.</p>
+        <div class="bb-search">
+          <i class="ic ic-search"></i>
+          <anvil-component type="TextBox" name="filter_box" prop:type="search" prop:placeholder="Filter: bail, TVQ, permit…"></anvil-component>
+        </div>
+      </section>
+      <anvil-component type="RepeatingPanel" name="terms_panel" prop:item_template="Business_Buddy.Items.Term" prop:role='["gl-list"]'></anvil-component>
+      <div class="ui-empty" anvil:name="no_terms">
+        <i class="ic ic-book"></i>
+        <h2>No term matches</h2>
+        <p>Try a French or English word.</p>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

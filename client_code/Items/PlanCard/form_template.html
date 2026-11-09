@@ -1,0 +1,11 @@
+<div class="ui-card hm-plan">
+  <div class="hm-plan-top"><span class="bb-ring" role="img" anvil:dom-node="ring"><span anvil:dom-node="pct"></span></span>
+    <div class="hm-plan-names"><h3 anvil:dom-node="title"></h3><div class="muted small" anvil:dom-node="meta"></div>
+      <div class="small hm-plan-date"><i class="ic ic-calendar" anvil:dom-node="cal"></i> <span anvil:dom-node="date"></span></div></div>
+    <a class="ui-btn primary" anvil:dom-node="open">Open</a></div>
+  <div class="bb-progress"><i anvil:dom-node="bar"></i></div>
+  <div class="small muted" anvil:dom-node="count"></div>
+  <div class="hm-next" anvil:dom-node="next_box"><b class="small">Next up</b>
+    <anvil-component type="RepeatingPanel" name="next_panel" prop:item_template="Business_Buddy.Items.NextStep" prop:role='["contents"]'></anvil-component></div>
+  <div class="ui-note" anvil:dom-node="all_done"><i class="ic ic-star"></i> Every step is done. Congratulations, and good luck with the opening!</div>
+</div>

@@ -1,0 +1,86 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <!-- #plan/new/<guide>: a new plan -->
+      <div class="pl-new" anvil:name="new_part">
+        <div class="pl-head"><span class="bb-tile lg"><i class="ic ic-rocket"></i></span><div class="grow"><h1>New launch plan: what are you opening?</h1></div></div>
+        <div class="ui-card ui-stack">
+          <label class="ui-field"><span>Type of business</span><anvil-component type="DropDown" name="new_guide" prop:include_placeholder="true" prop:placeholder="Choose a business…"></anvil-component></label>
+          <label class="ui-field"><span>Name of your business <em>(a working name is fine)</em></span><anvil-component type="TextBox" name="new_title" prop:placeholder="e.g. Boulangerie Pain Perdu"></anvil-component></label>
+          <div class="ui-grid two">
+            <label class="ui-field"><span>Borough</span><anvil-component type="DropDown" name="new_area" prop:include_placeholder="true" prop:placeholder="Choose…"></anvil-component></label>
+            <label class="ui-field"><span>Target opening date <em>(optional)</em></span><anvil-component type="TextBox" name="new_date"></anvil-component></label>
+          </div>
+          <anvil-component type="CheckBox" name="new_costs" prop:text="Start my budget with this business's typical Montréal costs" prop:checked="true"></anvil-component>
+          <div class="ui-row end">
+            <a class="ui-btn ghost" href="#home">Cancel</a>
+            <anvil-component type="Button" name="create_button" prop:text="Create my plan" prop:role='["btn", "btn-primary", "ic-rocket"]'></anvil-component>
+          </div>
+        </div>
+      </div>
+
+      <!-- #plan/<id>[/budget|/details] -->
+      <div anvil:name="plan_part">
+        <div class="pl-head">
+          <span class="bb-ring lg" role="img" anvil:dom-node="ring"><span anvil:dom-node="pct"></span></span>
+          <div class="grow">
+            <h1 anvil:dom-node="title"></h1>
+            <div class="pl-meta">
+              <span class="ui-badge" anvil:dom-node="guide_badge"><i class="ic ic-book"></i><span anvil:dom-node="guide_name"></span></span>
+              <span class="ui-badge" anvil:dom-node="area_badge"><i class="ic ic-pin"></i><span anvil:dom-node="area"></span></span>
+              <span class="ui-badge" anvil:dom-node="date_badge"><i class="ic ic-calendar"></i><span anvil:dom-node="date"></span></span>
+              <span class="ui-badge good"><i class="ic ic-check"></i><span anvil:dom-node="count"></span></span>
+              <span class="ui-badge" anvil:dom-node="hiring_badge"><i class="ic ic-users"></i>Hiring</span>
+            </div>
+          </div>
+          <a class="ui-btn" anvil:dom-node="guide_link"><i class="ic ic-book"></i>Read the guide</a>
+        </div>
+        <nav class="ui-tabs" aria-label="Plan">
+          <a anvil:name="tab_checklist"><i class="ic ic-list"></i>Checklist</a>
+          <a anvil:name="tab_budget"><i class="ic ic-coins"></i>Budget</a>
+          <a anvil:name="tab_details"><i class="ic ic-edit"></i>Details</a>
+        </nav>
+
+        <div anvil:name="checklist_part">
+          <anvil-component type="RepeatingPanel" name="phases_panel" prop:item_template="Business_Buddy.Items.PlanPhase"></anvil-component>
+          <p class="small muted pl-private"><i class="ic ic-info"></i> Your plan is private: only you can see it.</p>
+        </div>
+
+        <div anvil:name="budget_part">
+          <div class="pl-totals">
+            <div class="ui-card"><span>One-time costs</span><anvil-component type="Label" name="t_once" prop:role='["pl-total"]'></anvil-component></div>
+            <div class="ui-card"><span>Monthly costs</span><anvil-component type="Label" name="t_monthly" prop:role='["pl-total"]'></anvil-component></div>
+            <div class="ui-card pl-safe"><span>Money to open safely <em>(one-time + 6 months + 15%)</em></span><anvil-component type="Label" name="t_safe" prop:role='["pl-total", "accent"]'></anvil-component></div>
+          </div>
+          <div class="ui-card">
+            <div class="pl-brow head" aria-hidden="true"><span>Item</span><span>Amount ($)</span><span>Type</span><span></span></div>
+            <anvil-component type="RepeatingPanel" name="rows_panel" prop:item_template="Business_Buddy.Items.BudgetRow"></anvil-component>
+            <div class="ui-row pl-budget-actions">
+              <anvil-component type="Button" name="add_row_button" prop:text="Add a line" prop:role='["btn", "ic-plus"]'></anvil-component>
+              <span class="ui-spacer"></span>
+              <anvil-component type="Label" name="dirty_label" prop:role='["fine-print"]'></anvil-component>
+              <anvil-component type="Button" name="save_budget_button" prop:text="Save budget" prop:role='["btn", "btn-primary", "ic-check"]'></anvil-component>
+            </div>
+          </div>
+          <p class="small muted pl-typical" anvil:dom-node="typical"></p>
+        </div>
+
+        <div anvil:name="details_part">
+          <div class="ui-card ui-stack ui-narrow pl-details">
+            <label class="ui-field"><span>Name of your business</span><anvil-component type="TextBox" name="d_title"></anvil-component></label>
+            <div class="ui-grid two">
+              <label class="ui-field"><span>Borough</span><anvil-component type="DropDown" name="d_area" prop:include_placeholder="true" prop:placeholder="Choose…"></anvil-component></label>
+              <label class="ui-field"><span>Target opening date</span><anvil-component type="TextBox" name="d_date"></anvil-component></label>
+            </div>
+            <anvil-component type="CheckBox" name="d_hiring" prop:text="I'll hire employees (adds the employer steps to the checklist)"></anvil-component>
+            <div class="ui-row">
+              <anvil-component type="Button" name="delete_button" prop:text="Delete this plan" prop:role='["btn", "btn-danger", "ic-trash"]'></anvil-component>
+              <span class="ui-spacer"></span>
+              <anvil-component type="Button" name="save_details_button" prop:text="Save" prop:role='["btn", "btn-primary"]'></anvil-component>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

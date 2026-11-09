@@ -1,0 +1,16 @@
+---
+custom_component: true
+properties:
+  - name: content
+    type: string
+    default_value: ""
+    description: HTML paragraphs and lists from the knowledge base (guide intros, rules, the money, topic sections)
+    default_binding_prop: true
+toolbox_item:
+  title: Guide text
+  group: Business Buddy
+help_text: |
+  Shows a piece of knowledge-base prose (theme/assets/bb.js): paragraphs, lists, bold and links, written by us.
+  Set .content.
+---
+<div class="bb-prose-host"><div class="bb-prose" anvil:dom-node="box"></div></div>

@@ -1,0 +1,50 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <section class="lb-hero">
+        <h1>What do you want to open?</h1>
+        <p class="lead" anvil:dom-node="lead"></p>
+        <div class="bb-search" role="search">
+          <i class="ic ic-search"></i>
+          <anvil-component type="TextBox" name="search_box" prop:type="search" prop:placeholder="Search: bakery, permit, GST, certificat d'occupation…"></anvil-component>
+        </div>
+      </section>
+      <div class="lb-tools">
+        <div class="lb-scroll" tabindex="0" aria-label="Categories">
+          <anvil-component type="RepeatingPanel" name="cats_panel" prop:item_template="Business_Buddy.Items.Chip" prop:role='["bb-chips", "nowrap"]'></anvil-component>
+        </div>
+        <div class="lb-filters">
+          <anvil-component type="RepeatingPanel" name="filters_panel" prop:item_template="Business_Buddy.Items.Chip" prop:role='["bb-chips"]'></anvil-component>
+          <div class="ui-row">
+            <anvil-component type="Label" name="count_label" prop:role='["lb-count"]'></anvil-component>
+            <anvil-component type="DropDown" name="sort_box" prop:role='["lb-sort"]'></anvil-component>
+          </div>
+        </div>
+      </div>
+
+      <div anvil:name="results_part">
+        <anvil-component type="RepeatingPanel" name="hits_panel" prop:item_template="Business_Buddy.Items.Hit" prop:role='["lb-results"]'></anvil-component>
+        <div class="ui-empty" anvil:name="no_hits">
+          <i class="ic ic-search"></i>
+          <anvil-component type="Label" name="no_hits_title" prop:role='["empty-title"]'></anvil-component>
+          <p>Try another word, in English or French (e.g. "permis", "taxes", "barber").</p>
+        </div>
+      </div>
+
+      <div anvil:name="guides_part">
+        <anvil-component type="RepeatingPanel" name="groups_panel" prop:item_template="Business_Buddy.Items.GuideGroup"></anvil-component>
+        <div class="ui-empty" anvil:name="no_guides">
+          <i class="ic ic-search"></i>
+          <h2>No guide matches all of those filters</h2>
+          <p>Try removing one, or tell us which business you'd like a guide for.</p>
+          <anvil-component type="Button" name="suggest_button" prop:text="Suggest a business" prop:role='["btn", "ic-bulb"]'></anvil-component>
+        </div>
+        <div class="ui-card flat lb-basics">
+          <span class="bb-tile teal"><i class="ic ic-map"></i></span>
+          <div class="lb-basics-text"><h3>New to all this? Start with the Basics</h3><p class="muted">Registering, taxes, permits, leases, hiring: what every Montréal business needs to know.</p></div>
+          <a class="ui-btn primary" href="#basics">Read the Basics <i class="ic ic-arrow"></i></a>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

@@ -1,0 +1,48 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <section class="hm-hero">
+        <div>
+          <h1 anvil:dom-node="hello"></h1>
+          <p class="muted hm-lead"><span anvil:dom-node="lead"></span> <span class="ui-badge accent" anvil:dom-node="builders_badge"><i class="ic ic-users"></i><span anvil:dom-node="builders"></span></span></p>
+        </div>
+        <div class="hm-art" aria-hidden="true"><anvil-component type="Business_Buddy.Components.Street" name="street"></anvil-component></div>
+      </section>
+      <div class="hm-grid">
+        <div class="hm-main">
+          <anvil-component type="RepeatingPanel" name="plans_panel" prop:item_template="Business_Buddy.Items.PlanCard" prop:role='["hm-plans"]'></anvil-component>
+          <a class="ui-btn hm-another" href="#library" anvil:name="another_link"><i class="ic ic-plus"></i>Plan another business</a>
+          <div class="ui-card hm-start" anvil:name="start_card">
+            <span class="bb-tile lg"><i class="ic ic-rocket"></i></span>
+            <h2>Start your first launch plan</h2>
+            <p class="muted">Choose a business from the guides, tap "Start my launch plan", and you'll get the full Montréal checklist for it, a startup budget and a countdown to opening day.</p>
+            <div class="ui-row"><a class="ui-btn primary" href="#library"><i class="ic ic-grid"></i>Browse the guides</a><a class="ui-btn" href="#tools/finder"><i class="ic ic-stamp"></i>Which permits do I need?</a></div>
+          </div>
+        </div>
+        <div class="hm-side">
+          <div class="ui-card">
+            <h2 class="hm-side-h"><i class="ic ic-bookmark"></i>Saved</h2>
+            <anvil-component type="RepeatingPanel" name="saved_panel" prop:item_template="Business_Buddy.Items.SideLink" prop:role='["hm-links"]'></anvil-component>
+            <p class="bb-empty-hint" anvil:name="no_saved">Tap "Save" on any guide or topic to keep it here.</p>
+          </div>
+          <div class="ui-card">
+            <h2 class="hm-side-h"><i class="ic ic-calendar"></i>Tax calendar</h2>
+            <div class="hm-cal">
+              <div><b>Feb 28</b><span>RL-1 and T4 slips to employees (if you have any)</span></div>
+              <div><b>Mar 15</b><span>Income tax instalment (if required)</span></div>
+              <div><b>Apr 30</b><span>Pay any income tax balance owing</span></div>
+              <div><b>Jun 15</b><span>File your return as a self-employed person; instalment</span></div>
+              <div><b>Sep 15</b><span>Income tax instalment</span></div>
+              <div><b>Dec 15</b><span>Income tax instalment</span></div>
+            </div>
+            <p class="small muted hm-cal-note">GST/QST: usually once a year for small businesses, 3 months after your fiscal year ends.</p>
+          </div>
+          <div class="ui-card" anvil:name="popular_card">
+            <h2 class="hm-side-h"><i class="ic ic-star"></i>Popular in Montréal</h2>
+            <anvil-component type="RepeatingPanel" name="popular_panel" prop:item_template="Business_Buddy.Items.SideLink" prop:role='["hm-links"]'></anvil-component>
+          </div>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

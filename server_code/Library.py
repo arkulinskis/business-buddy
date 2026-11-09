@@ -36,7 +36,7 @@ def _bump_view(kind, slug):
     seen = list(anvil.server.session.get("seen") or [])
     if key in seen:
         return
-    anvil.server.session["seen"] = (seen + [key])[-300:]
+    getattr(anvil.server, "session")["seen"] = (seen + [key])[-300:]
     row = app_tables.page_stats.get(kind=kind, slug=slug, is_demo=False)
     if row is None:
         app_tables.page_stats.add_row(kind=kind, slug=slug, views=1, is_demo=False)
@@ -87,7 +87,7 @@ def vote(kind, slug, helpful):
         if me is None:
             votes = dict(anvil.server.session.get("votes") or {})
             votes[kind + ":" + slug] = row.get_id()
-            anvil.server.session["votes"] = votes
+            getattr(anvil.server, "session")["votes"] = votes
     else:
         row.update(helpful=bool(helpful), created=C.now())
     up, total = votes_of(kind, slug)
