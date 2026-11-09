@@ -1,0 +1,43 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap tp-wrap">
+      <div anvil:name="missing" class="ui-empty">
+        <i class="ic ic-search"></i>
+        <h2>We don't have that topic</h2>
+        <a class="ui-btn primary" href="#basics">All the basics</a>
+      </div>
+
+      <div anvil:name="page">
+        <section class="tp-hero">
+          <nav class="gd-crumbs" aria-label="Breadcrumb"><a href="#basics">The Basics</a><span aria-hidden="true">›</span><span anvil:dom-node="stage"></span></nav>
+          <div class="tp-title"><span class="bb-tile teal lg"><i class="ic" anvil:dom-node="icon"></i></span><div><h1 anvil:dom-node="title"></h1><div class="fr" anvil:dom-node="fr"></div></div></div>
+          <p class="lead" anvil:dom-node="summary"></p>
+          <div class="ui-row">
+            <span class="ui-badge"><i class="ic ic-clock"></i><span anvil:dom-node="minutes"></span></span>
+            <anvil-component type="Business_Buddy.Components.SaveButton" name="save"></anvil-component>
+            <a class="ui-btn ghost sm" anvil:dom-node="skip" anvil:on-dom:click="self.skip_click"><i class="ic ic-sparkle"></i>Skip to going deeper</a>
+          </div>
+        </section>
+        <div class="bb-note tp-note"><i class="ic ic-info"></i><div anvil:dom-node="check_note"></div></div>
+        <anvil-component type="RepeatingPanel" name="basics_panel" prop:item_template="Business_Buddy.Items.TopicSec"></anvil-component>
+        <div class="tp-deeper" id="tp-deeper" anvil:name="deeper_part">
+          <div class="tp-deeper-head"><span class="bb-tile"><i class="ic ic-sparkle"></i></span><h2>Going deeper <span class="ui-badge accent">Advanced</span></h2></div>
+          <anvil-component type="RepeatingPanel" name="deeper_panel" prop:item_template="Business_Buddy.Items.TopicSec"></anvil-component>
+        </div>
+        <section class="tp-sec" anvil:name="links_part">
+          <h2>Official sources</h2>
+          <anvil-component type="RepeatingPanel" name="links_panel" prop:item_template="Business_Buddy.Items.Source" prop:role='["bb-sources"]'></anvil-component>
+        </section>
+        <section class="tp-sec" anvil:name="guides_part">
+          <h2>Businesses where this matters most</h2>
+          <anvil-component type="RepeatingPanel" name="guides_panel" prop:item_template="Business_Buddy.Items.LinkChip" prop:role='["bb-chips"]'></anvil-component>
+        </section>
+        <section class="tp-sec" anvil:name="related_part">
+          <h2>Read next</h2>
+          <anvil-component type="RepeatingPanel" name="related_panel" prop:item_template="Business_Buddy.Items.TopicCard" prop:role='["bb-grid"]'></anvil-component>
+        </section>
+        <anvil-component type="Business_Buddy.Components.VoteBox" name="vote"></anvil-component>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

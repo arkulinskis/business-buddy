@@ -1,0 +1,123 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="page-landing">
+      <section class="lp-hero">
+        <div class="ui-wrap">
+          <div>
+            <h1>Open your <em>own little shop</em> in Montréal, step by step.</h1>
+            <p class="lp-lead">Barber shop, bakery, cleaning service, food truck, home daycare… Business Buddy explains exactly what it takes here for a one- or two-person business: the permits, the borough, the taxes, the real costs, and the tricks people only learn the hard way.</p>
+            <div class="lp-cta">
+              <a class="ui-btn primary lg" href="#library"><i class="ic ic-grid"></i>Browse the guides</a>
+              <a class="ui-btn lg" href="#auth/signup" anvil:name="guest_cta">Create my free plan <i class="ic ic-arrow"></i></a>
+              <a class="ui-btn lg" href="#home" anvil:name="member_cta">Open my plans <i class="ic ic-arrow"></i></a>
+            </div>
+            <div class="lp-proof">
+              <span><i class="ic ic-check"></i>Free, no ads</span>
+              <span><i class="ic ic-check"></i>Made for Montréal</span>
+              <span><i class="ic ic-check"></i>Basics + advanced</span>
+            </div>
+          </div>
+          <div class="lp-art" aria-hidden="true">
+            <anvil-component type="Business_Buddy.Components.Street" name="street"></anvil-component>
+            <div class="tag t1"><span class="bb-tile food"><i class="ic ic-croissant"></i></span><div><b>Bakery</b><span class="muted" anvil:dom-node="bakery_cost"></span></div></div>
+            <div class="tag t2"><span class="bb-ring sm"><span>62%</span></span><div><b>Barber shop plan</b><span class="muted">Opening in 75 days</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-strip">
+        <div class="ui-wrap lp-strip-in">
+          <anvil-component type="RepeatingPanel" name="cats_panel" prop:item_template="Business_Buddy.Items.CatTile" prop:role='["lp-cats"]'></anvil-component>
+        </div>
+      </section>
+
+      <section class="lp-section ytf" id="watch">
+        <div class="ui-wrap">
+          <div class="ytf-in">
+            <div class="ytf-copy">
+              <h2>Watch: Business Buddy in about a minute</h2>
+              <p>A short video tour of what Business Buddy does and how it works.</p>
+              <a class="ytf-link" href="https://www.youtube.com/watch?v=Yw346NsYCr0" target="_blank" rel="noopener"><svg viewBox="0 0 28 20" width="20" height="14" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#FF0033"/><path d="M11.2 5.8v8.4l7.3-4.2z" fill="#fff"/></svg>Watch on YouTube &#8599;</a>
+            </div>
+            <div>
+              <div class="ytf-frame" anvil:dom-node="yt_frame">
+                <button type="button" class="ytf-cover" anvil:dom-node="yt_cover" aria-label="Play the Business Buddy video (1:15)">
+                  <img src="_/theme/yt-cover.jpg" alt="" loading="lazy" decoding="async" width="960" height="540">
+                  <span class="ytf-play" aria-hidden="true"><svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.3.3 34 .3 34 .3s-21.3 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6c5.2 1.4 26.5 1.4 26.5 1.4s21.3 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#FF0033"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
+                  <span class="ytf-len">1:15</span>
+                </button>
+              </div>
+              <p class="ytf-note">The video loads from YouTube when you press play.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section" id="how">
+        <div class="ui-wrap">
+          <div class="lp-head"><h2>How it works</h2><p>From "I have an idea" to "we're open", without the guesswork.</p></div>
+          <div class="lp-steps">
+            <div class="ui-card lp-step"><h3>Pick your business</h3><p class="muted">Read its guide: permits, costs, money maths, pitfalls and pro tips, all specific to Montréal.</p></div>
+            <div class="ui-card lp-step"><h3>Get your launch plan</h3><p class="muted">One tap turns the guide into your checklist, with a startup budget and a countdown to opening day.</p></div>
+            <div class="ui-card lp-step"><h3>Tick it off</h3><p class="muted">Work through the six phases, keep notes from every phone call, and watch the progress ring fill up.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section">
+        <div class="ui-wrap">
+          <div class="lp-mtl">
+            <div>
+              <h2>Why a Montréal guide? Generic "start a business" advice skips the parts that trip people up here.</h2>
+              <p class="muted lp-mtl-lead">Three levels of government, 19 boroughs, two sales taxes, French-first rules. We researched them so you don't lose weeks finding out who issues what.</p>
+              <a class="ui-btn" href="#basics"><i class="ic ic-map"></i>Read the Basics</a>
+            </div>
+            <ul>
+              <li><i class="ic ic-store"></i><div><b>Your borough is your city hall</b><span>Occupancy permits, signs, renovations and terraces come from your arrondissement, and each has its own rules and fees.</span></div></li>
+              <li><i class="ic ic-receipt"></i><div><b>Revenu Québec collects both sales taxes</b><span>GST and QST, one registration, one return, and the $30,000 small-supplier rule.</span></div></li>
+              <li><i class="ic ic-chat"></i><div><b>French comes first</b><span>Your name, sign and website must work in French. We show you how to do it right the first time.</span></div></li>
+              <li><i class="ic ic-cup"></i><div><b>MAPAQ for anything food</b><span>Which permit, what it costs, the 12-hour manager course, and the home-kitchen rules.</span></div></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section">
+        <div class="ui-wrap">
+          <div class="lp-head"><h2>Everything in one place</h2></div>
+          <div class="lp-features">
+            <div class="lp-feature"><i class="ic ic-grid"></i><div><h3>Guides</h3><p>Step-by-step guides for 30 kinds of small businesses, from bakeries to electricians.</p></div></div>
+            <div class="lp-feature"><i class="ic ic-map"></i><div><h3>The Basics</h3><p>Registering, GST/QST, the certificate of occupancy, leases, hiring, French rules: explained simply, then in depth.</p></div></div>
+            <div class="lp-feature"><i class="ic ic-stamp"></i><div><h3>Permit finder</h3><p>Answer a few questions and get the list of permits and registrations that apply to you.</p></div></div>
+            <div class="lp-feature"><i class="ic ic-chart"></i><div><h3>Calculators</h3><p>Break-even, hourly rate, GST/QST, the $30,000 threshold tracker and a structure quiz.</p></div></div>
+            <div class="lp-feature"><i class="ic ic-list"></i><div><h3>Your launch plan</h3><p>A private checklist with notes, a budget sheet and your opening date.</p></div></div>
+            <div class="lp-feature"><i class="ic ic-book"></i><div><h3>French ⇄ English</h3><p>A glossary of the words on the forms and at the borough counter.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section">
+        <div class="ui-wrap">
+          <div class="lp-head"><h2>Questions</h2></div>
+          <div class="lp-faq">
+            <details><summary>Is it free?</summary><p>Yes. Reading everything is free and needs no account. A free account lets you save guides and build launch plans.</p></details>
+            <details><summary>Is this legal advice?</summary><p anvil:dom-node="legal_answer"></p></details>
+            <details><summary>My business isn't in the list. Can I still use it?</summary><p>Yes: the Basics and the permit finder apply to every business. And tell us which guide you'd like next with the feedback button.</p></details>
+            <details><summary>Who can see my plans?</summary><p>Only you. Your plans, notes and budgets are private. The Privacy &amp; Terms page has the details.</p></details>
+            <details><summary>What about the suburbs or the rest of Québec?</summary><p>Provincial rules (registration, taxes, MAPAQ, RBQ…) are the same everywhere in Québec. Municipal permits are Montréal-specific here; other cities work similarly but with their own by-laws.</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section">
+        <div class="ui-wrap">
+          <div class="lp-band">
+            <div class="bb-awning"></div>
+            <div><h2>Your shop could open this year.</h2><p>Start with the guide for your business. It takes 10 minutes to read and saves months.</p></div>
+            <a class="ui-btn lg" href="#library">Find my business <i class="ic ic-arrow"></i></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </anvil-block>
+</anvil-form>

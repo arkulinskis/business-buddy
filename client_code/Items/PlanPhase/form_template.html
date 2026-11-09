@@ -1,0 +1,9 @@
+<section class="ui-card pl-phase" anvil:dom-node="sec">
+  <button type="button" class="pl-phase-head" anvil:dom-node="head" anvil:on-dom:click="self.head_click">
+    <span class="bb-tile"><i class="ic" anvil:dom-node="icon"></i></span>
+    <span class="pl-phase-names"><span class="small muted" anvil:dom-node="num"></span><span class="pl-phase-title" anvil:dom-node="name"></span></span>
+    <span class="count" anvil:dom-node="count"></span><i class="ic ic-chevron chev"></i></button>
+  <div class="pl-tasks" anvil:dom-node="tasks_box">
+    <anvil-component type="RepeatingPanel" name="tasks_panel" prop:item_template="Business_Buddy.Items.Task"></anvil-component>
+  </div>
+</section>

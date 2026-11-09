@@ -1,0 +1,117 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div anvil:name="missing" class="ui-empty">
+        <i class="ic ic-search"></i>
+        <h2>We don't have that guide</h2>
+        <p>It may have moved. Browse all the guides instead.</p>
+        <a class="ui-btn primary" href="#library">All guides</a>
+      </div>
+
+      <div anvil:name="page">
+        <section class="gd-hero" anvil:dom-node="hero">
+          <nav class="gd-crumbs" aria-label="Breadcrumb"><a href="#library">Guides</a><span aria-hidden="true">›</span><a anvil:dom-node="cat_link"></a></nav>
+          <div class="gd-title">
+            <span class="bb-tile lg"><i class="ic" anvil:dom-node="icon"></i></span>
+            <div>
+              <h1 anvil:dom-node="name"></h1>
+              <div class="fr" anvil:dom-node="fr"></div>
+              <p class="lead" anvil:dom-node="tagline"></p>
+            </div>
+          </div>
+          <div class="gd-glance">
+            <div><span>Startup cost</span><b anvil:dom-node="g_cost"></b></div>
+            <div><span>Time to open</span><b anvil:dom-node="g_weeks"></b></div>
+            <div><span>Difficulty</span><b><span class="bb-dots" role="img" anvil:dom-node="dots"><i></i><i></i><i></i><i></i><i></i></span> <small anvil:dom-node="g_diff"></small></b></div>
+            <div><span>At home?</span><b anvil:dom-node="g_home"></b></div>
+          </div>
+          <div class="gd-actions">
+            <a class="ui-btn primary" anvil:dom-node="plan_link"><i class="ic ic-rocket" anvil:dom-node="plan_icon"></i><span anvil:dom-node="plan_text">Start my launch plan</span></a>
+            <anvil-component type="Business_Buddy.Components.SaveButton" name="save"></anvil-component>
+            <anvil-component type="Button" name="print_button" prop:text="Print" prop:role='["btn", "btn-ghost", "ic-print"]'></anvil-component>
+          </div>
+        </section>
+
+        <div class="gd-layout">
+          <nav class="gd-toc" aria-label="On this page" anvil:dom-node="toc">
+            <a href="#gd-overview" data-jump="overview" anvil:on-dom:click="self.jump_click">Overview</a>
+            <a href="#gd-permits" data-jump="permits" anvil:on-dom:click="self.jump_click">Permits you'll need</a>
+            <a href="#gd-rules" data-jump="rules" anvil:on-dom:click="self.jump_click">What's special</a>
+            <a href="#gd-costs" data-jump="costs" anvil:on-dom:click="self.jump_click">Startup costs</a>
+            <a href="#gd-money" data-jump="money" anvil:on-dom:click="self.jump_click">The money</a>
+            <a href="#gd-tips" data-jump="tips" anvil:on-dom:click="self.jump_click">Tips</a>
+            <a href="#gd-deeper" data-jump="deeper" anvil:on-dom:click="self.jump_click">Going deeper</a>
+            <a href="#gd-pitfalls" data-jump="pitfalls" anvil:on-dom:click="self.jump_click">Pitfalls</a>
+            <a href="#gd-roadmap" data-jump="roadmap" anvil:on-dom:click="self.jump_click">Your roadmap</a>
+            <a href="#gd-sources" data-jump="sources" anvil:on-dom:click="self.jump_click">Sources</a>
+          </nav>
+          <article>
+            <section class="gd-sec" id="gd-overview">
+              <h2><i class="ic ic-info"></i>Overview</h2>
+              <anvil-component type="Business_Buddy.Components.Prose" name="intro"></anvil-component>
+              <div class="bb-note"><i class="ic ic-info"></i><div anvil:dom-node="check_note"></div></div>
+            </section>
+            <section class="gd-sec" id="gd-permits">
+              <h2><i class="ic ic-stamp"></i>Permits you'll need</h2>
+              <p class="muted">The registrations and licences that usually apply. Your exact list depends on your address and setup: the <a href="#tools/finder">permit finder</a> in Tools helps.</p>
+              <anvil-component type="RepeatingPanel" name="permits_panel" prop:item_template="Business_Buddy.Items.Permit" prop:role='["gd-permits"]'></anvil-component>
+            </section>
+            <section class="gd-sec" id="gd-rules">
+              <h2><i class="ic ic-shield"></i>What's special about this business</h2>
+              <anvil-component type="RepeatingPanel" name="rules_panel" prop:item_template="Business_Buddy.Items.Rule"></anvil-component>
+            </section>
+            <section class="gd-sec" id="gd-costs">
+              <h2><i class="ic ic-coins"></i>Startup costs</h2>
+              <p class="muted">Rough Montréal ranges for a 1–2 person business, before taxes. Your plan turns these into your own cost sheet.</p>
+              <div class="gd-costs" role="table" aria-label="One-time costs" anvil:name="once_table">
+                <div class="gd-costs-cap">One-time costs</div>
+                <div class="gd-cost-row head" role="row"><span role="columnheader">Item</span><span role="columnheader" class="n">Low</span><span role="columnheader" class="n">High</span></div>
+                <anvil-component type="RepeatingPanel" name="once_panel" prop:item_template="Business_Buddy.Items.CostRow"></anvil-component>
+              </div>
+              <div class="gd-costs" role="table" aria-label="Monthly costs" anvil:name="monthly_table">
+                <div class="gd-costs-cap">Monthly costs</div>
+                <div class="gd-cost-row head" role="row"><span role="columnheader">Item</span><span role="columnheader" class="n">Low</span><span role="columnheader" class="n">High</span></div>
+                <anvil-component type="RepeatingPanel" name="monthly_panel" prop:item_template="Business_Buddy.Items.CostRow"></anvil-component>
+              </div>
+              <div class="ui-note">To open safely, have the one-time costs <b>plus about 6 months of monthly costs</b> and a 15% cushion: roughly <b anvil:dom-node="safe"></b>.</div>
+            </section>
+            <section class="gd-sec" id="gd-money">
+              <h2><i class="ic ic-chart"></i>The money</h2>
+              <anvil-component type="Business_Buddy.Components.Prose" name="money"></anvil-component>
+              <a class="ui-btn sm" href="#tools/breakeven"><i class="ic ic-chart"></i>Try the break-even calculator</a>
+            </section>
+            <section class="gd-sec" id="gd-tips">
+              <h2><i class="ic ic-bulb"></i>Tips to start right</h2>
+              <anvil-component type="RepeatingPanel" name="tips_panel" prop:item_template="Business_Buddy.Items.Bullet" prop:role='["gd-list", "good"]'></anvil-component>
+            </section>
+            <section class="gd-sec" id="gd-deeper">
+              <h2><i class="ic ic-sparkle"></i>Going deeper <span class="ui-badge accent">Advanced</span></h2>
+              <anvil-component type="RepeatingPanel" name="pro_panel" prop:item_template="Business_Buddy.Items.Bullet" prop:role='["gd-list", "pro"]'></anvil-component>
+            </section>
+            <section class="gd-sec" id="gd-pitfalls">
+              <h2><i class="ic ic-flag"></i>Common pitfalls</h2>
+              <anvil-component type="RepeatingPanel" name="pitfalls_panel" prop:item_template="Business_Buddy.Items.Bullet" prop:role='["gd-list", "bad"]'></anvil-component>
+            </section>
+            <section class="gd-sec" id="gd-roadmap">
+              <h2><i class="ic ic-map"></i>Your roadmap</h2>
+              <anvil-component type="RepeatingPanel" name="phases_panel" prop:item_template="Business_Buddy.Items.Phase" prop:role='["gd-road"]'></anvil-component>
+              <div class="gd-plan-cta">
+                <div class="bb-awning"></div>
+                <span class="bb-tile lg gd-cta-tile"><i class="ic ic-rocket"></i></span>
+                <div class="gd-cta-text"><h3>Turn this into your own checklist</h3><p>Tick off each step, keep notes, track your startup budget and your opening date. Free.</p></div>
+                <a class="ui-btn lg" anvil:dom-node="plan_link2"><span anvil:dom-node="plan_text2">Start my plan</span> <i class="ic ic-arrow"></i></a>
+              </div>
+            </section>
+            <section class="gd-sec" id="gd-sources">
+              <h2><i class="ic ic-external"></i>Official sources</h2>
+              <anvil-component type="RepeatingPanel" name="sources_panel" prop:item_template="Business_Buddy.Items.Source" prop:role='["bb-sources"]'></anvil-component>
+              <h3 class="gd-next-h">Read next in the Basics</h3>
+              <anvil-component type="RepeatingPanel" name="topics_panel" prop:item_template="Business_Buddy.Items.TopicCard" prop:role='["bb-grid"]'></anvil-component>
+            </section>
+            <anvil-component type="Business_Buddy.Components.VoteBox" name="vote"></anvil-component>
+          </article>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

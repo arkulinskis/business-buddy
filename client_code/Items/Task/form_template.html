@@ -1,0 +1,17 @@
+<div class="pl-task" anvil:dom-node="row">
+  <anvil-component type="CheckBox" name="check" prop:role='["pl-check"]'></anvil-component>
+  <div class="pl-task-body">
+    <div class="t" anvil:dom-node="title" anvil:on-dom:click="self.title_click"></div>
+    <p class="d" anvil:dom-node="desc"></p>
+    <div class="links"><a anvil:dom-node="topic"><i class="ic ic-book"></i><span anvil:dom-node="topic_name"></span></a>
+      <anvil-component type="Link" name="note_link" prop:text="Add a note" prop:role='["pl-note-link", "ic-note"]'></anvil-component></div>
+    <anvil-component type="Label" name="note_view" prop:role='["pl-note"]'></anvil-component>
+    <div anvil:name="note_editor" class="pl-note-edit">
+      <anvil-component type="TextArea" name="note_box" prop:placeholder="Who you called, what they said, documents needed…"></anvil-component>
+      <div class="ui-row">
+        <anvil-component type="Button" name="note_save" prop:text="Save note" prop:role='["btn", "btn-sm", "btn-primary"]'></anvil-component>
+        <anvil-component type="Button" name="note_cancel" prop:text="Cancel" prop:role='["btn", "btn-sm", "btn-ghost"]'></anvil-component>
+      </div>
+    </div>
+  </div>
+</div>

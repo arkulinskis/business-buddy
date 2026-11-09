@@ -1,0 +1,14 @@
+---
+custom_component: true
+properties: []
+toolbox_item:
+  title: Save button
+  group: Business Buddy
+help_text: |
+  "Save" on a guide or topic: visitors get a link to sign up, members a toggle (toggle_save). The page calls
+  setup(kind, slug, page_state reply) once it knows the state.
+---
+<span class="bb-save">
+  <a class="ui-btn" href="#auth/signup" anvil:name="guest_link"><i class="ic ic-bookmark"></i>Save</a>
+  <anvil-component type="Button" name="save_button" prop:text="Save" prop:role='["btn", "ic-bookmark"]'></anvil-component>
+</span>

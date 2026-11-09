@@ -1,0 +1,33 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <section class="bs-hero">
+        <div>
+          <h1>The Montréal basics, for every kind of business</h1>
+          <p class="lead" anvil:dom-node="lead"></p>
+          <div class="ui-row bs-hero-cta">
+            <a class="ui-btn primary" href="#topic/roadmap"><i class="ic ic-map"></i>Start with the roadmap</a>
+            <a class="ui-btn" href="#glossary"><i class="ic ic-book"></i>French ⇄ English glossary</a>
+          </div>
+        </div>
+        <anvil-component type="RepeatingPanel" name="steps_panel" prop:item_template="Business_Buddy.Items.StageStep" prop:role='["bs-steps"]'></anvil-component>
+      </section>
+
+      <anvil-component type="RepeatingPanel" name="stages_panel" prop:item_template="Business_Buddy.Items.StageBlock"></anvil-component>
+
+      <section class="bs-stage">
+        <div class="bs-stage-head"><i class="ic ic-book"></i><h2>Words you'll hear at the counter</h2></div>
+        <anvil-component type="RepeatingPanel" name="gloss_panel" prop:item_template="Business_Buddy.Items.GlossPick" prop:role='["bs-gloss"]'></anvil-component>
+        <a class="ui-btn" href="#glossary"><span anvil:dom-node="all_terms"></span> <i class="ic ic-arrow"></i></a>
+      </section>
+
+      <section class="bs-stage">
+        <div class="bs-stage-head"><i class="ic ic-external"></i><h2>Official starting points</h2></div>
+        <div class="ui-card">
+          <anvil-component type="RepeatingPanel" name="sources_panel" prop:item_template="Business_Buddy.Items.Source" prop:role='["bb-sources"]'></anvil-component>
+        </div>
+        <div class="bb-note bs-note"><i class="ic ic-info"></i><div anvil:dom-node="check_note"></div></div>
+      </section>
+    </div>
+  </anvil-block>
+</anvil-form>
