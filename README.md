@@ -39,7 +39,7 @@ Members turn a guide into a private launch plan (checklist, notes, budget, openi
   adds the employer steps), delete. Up to 12 plans each; private.
 - **Save** any guide or topic to the dashboard.
 
-**For admins** (`#admin`; arkulinskis@gmail.com becomes an admin on first sign-in):
+**For admins** (`#admin`; your admin email (App Secret `admin_emails`) becomes an admin on first sign-in):
 - **Overview:** people, admins, new feedback, launch plans, helpful votes.
 - **Content:** every guide and topic with views, % helpful and plans built on it (what to update first).
 - **Feedback inbox** (incl. outdated-info reports), **Users**, **Demo data** (4 fictional founders with plans, votes and
@@ -50,7 +50,7 @@ Members turn a guide into a private launch plan (checklist, notes, budget, openi
 1. In the Anvil editor: **Create app → Clone from GitHub**, and paste `https://github.com/arkulinskis/business-buddy`.
 2. **Users** service: email + password and "Continue with Google", sign-up allowed (already set in `anvil.yaml`; check it).
 3. Open the app in the editor. If it shows a **Schema Mismatch** alert, choose **"The schema of the source code is correct"** so Anvil creates the tables.
-4. **Run** it and sign up with **arkulinskis@gmail.com** straight away (that account becomes the admin).
+4. **Run** it and sign up with **your admin email** (App Secret `admin_emails`) straight away (that account becomes the admin).
 5. **Publish** (Publish → public URL, or your own domain).
 
 <!-- libraries:start -->
