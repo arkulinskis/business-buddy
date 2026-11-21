@@ -421,10 +421,9 @@ db_schema:
     server: full
     title: Votes
 metadata:
-  description: 'How to open a small business in Montréal, step by step: barber shop, bakery, café, cleaning, trades and more.
-    Permits, taxes, costs and a personal launch plan.'
-  logo_img: asset:icon-512.png
-  title: 'Business Buddy: how to start a small business in Montréal'
+  description: "How to open a small business in Montréal, step by step: barber shop, bakery, café, cleaning, trades and more. Permits, taxes, costs and a personal launch plan."
+  logo_img: "asset:icon-512.png"
+  title: "Business Buddy: how to start a small business in Montréal"
 name: Business Buddy
 native_deps:
   head_html: |
@@ -455,7 +454,7 @@ native_deps:
     <p>Business Buddy is a free knowledge base for people who want to open a small, one- or two-person business in Montréal: a barber shop, a bakery, a cleaning service, a food truck, a home daycare and more.</p>
     <p>For each kind of business it explains the permits, the borough, the taxes, the real costs, the money maths and the advanced tricks, with links to the official sources. Members turn a guide into a private launch plan with a checklist, notes, a budget and an opening date. Content was checked in October 2026; fees and rules change every year.</p>
     <p>Who it's for: People opening a one- or two-person business in Montréal</p>
-    <h2>What it does</h2><ul><li>30 business guides in 6 categories</li><li>Permit cards: who issues it, the cost, when and the official page</li><li>One-time and monthly cost tables and the money maths</li><li>The Basics: 21 topics from registration to taxes</li><li>Search in English or French, with accents</li><li>A private launch plan with checklist, budget and opening date</li></ul>
+    <h2>What it does</h2><ul><li>30 business guides in 6 categories</li><li>Permit cards: who issues it, the cost, when and the official page</li><li>One-time and monthly cost tables and the money maths</li><li>The Basics: 22 topics from registration to taxes</li><li>Search in English or French, with accents</li><li>A private launch plan with checklist, budget and opening date</li><li>A plain guide page for every business at /guides</li><li>A before-you-sign-the-lease check</li><li>A read-only plan link to share with an advisor</li></ul>
     <h2>Questions</h2><h3>Is Business Buddy free?</h3><p>Yes. The guides and the Basics are free to read without an account.</p><h3>Is the information official?</h3><p>No, it is a guide. Every permit and rule links to the official source, and the content was last checked in October 2026.</p><h3>Which businesses are covered?</h3><p>Thirty kinds in six categories: food and drink, beauty and wellness, home and trades, kids, pets and learning, shops, and services and creative work.</p>
     <p><a href="https://business-buddy.anvil.app/about">About Business Buddy</a> &middot; <a href="https://business-buddy.anvil.app/llms.txt">Business Buddy for AI assistants</a> &middot; Made by <a href="https://arkvital.com">Arkvital</a>, Montreal, Canada. Business Buddy needs JavaScript in your browser.</p>
     </div></noscript>
