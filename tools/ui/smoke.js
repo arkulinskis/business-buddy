@@ -117,6 +117,8 @@
     await open('#tools/structure', /suggestion/);
     button(/Over \$120,000/).click();
     await sleep(400);
+    await open('#tools/lease', /Before you sign the lease/);
+    await open('#shared/not-a-real-link-0000000000', /This link|Almost ready/);
     await open('#auth', /Sign in/);
     await open('#auth/signup', /Create account/);
 

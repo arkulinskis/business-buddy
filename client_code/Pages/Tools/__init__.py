@@ -1,11 +1,12 @@
 import math
 
 from anvil import *
+from anvil.js import window
 
 from ._anvil_designer import ToolsTemplate
-from ... import bb, state
+from ... import bb, lease_rules, state
 
-TOOLS = ["finder", "breakeven", "taxes", "threshold", "rate", "structure"]
+TOOLS = ["finder", "breakeven", "taxes", "threshold", "rate", "structure", "lease"]
 
 # ---------------------------------------------------------------- permit finder questions: (key, multi, label, options)
 FQ = [
@@ -110,17 +111,19 @@ class Quiz:
 
 
 class Tools(ToolsTemplate):
-    """#tools/<finder|breakeven|taxes|threshold|rate|structure> (Operate): the permit finder and five calculators.
-    Everything runs in the browser (no server calls); answers are remembered per browser under the JavaScript
-    version's keys (finder, be, tx, th, rt, sq)."""
+    """#tools/<finder|breakeven|taxes|threshold|rate|structure|lease> (Operate): the permit finder, five calculators and
+    "Before you sign the lease" (rules in client_code/lease_rules.py). Everything runs in the browser (no server
+    calls); answers are remembered per browser under the JavaScript version's keys (finder, be, tx, th, rt, sq) + lease."""
 
     def __init__(self, args=(), **properties):
         super().__init__(**properties)
         self.tool = args[0] if args and args[0] in TOOLS else "finder"
         parts = {"finder": self.finder_part, "breakeven": self.breakeven_part, "taxes": self.taxes_part,
-                 "threshold": self.threshold_part, "rate": self.rate_part, "structure": self.structure_part}
+                 "threshold": self.threshold_part, "rate": self.rate_part, "structure": self.structure_part,
+                 "lease": self.lease_part}
         tabs = {"finder": self.tab_finder, "breakeven": self.tab_breakeven, "taxes": self.tab_taxes,
-                "threshold": self.tab_threshold, "rate": self.tab_rate, "structure": self.tab_structure}
+                "threshold": self.tab_threshold, "rate": self.tab_rate, "structure": self.tab_structure,
+                "lease": self.tab_lease}
         for name in TOOLS:
             parts[name].visible = name == self.tool
             tabs[name].classes["on"] = name == self.tool
@@ -284,3 +287,50 @@ class Tools(ToolsTemplate):
         self.sq_title.text = title
         self.sq_why.text = why
         self.sq_partners.visible = two
+
+    # ---- before you sign the lease (lease_rules.py decides; answers in browser storage "lease")
+    def _lease_questions(self):
+        self.lease_panel.items = [{"key": k, "multi": False, "label": label, "opts": opts, "host": self.lq}
+                                  for k, label, opts in lease_rules.QUESTIONS]
+
+    def _start_lease(self):
+        self.lq = Quiz("lease", {}, [], self._draw_lease)
+        self.lease_address.text = self.lq.answers.get("address") or ""
+        state.set_control_attr(self.lease_address, "maxlength", "120")
+        state.set_control_attr(self.lease_address, "autocomplete", "street-address")
+        self._lease_questions()
+        self._draw_lease()
+
+    def _draw_lease(self):
+        r = lease_rules.evaluate(self.lq.answers)
+        box = self.dom_nodes["lease_verdict"]
+        for v in ("red", "amber", "green", "none"):
+            box.classList.remove("ls-" + v)
+        box.classList.add("ls-" + (r["verdict"] or "none"))
+        self.lease_headline.text = r["headline"]
+        self.lease_summary.text = r["summary"]
+        self.lease_progress.text = "%d of %d answered" % (r["answered"], r["total"])
+        self.lease_ask.items = r["ask"]
+        self.lease_ask_none.visible = not r["ask"]
+        self.lease_lease.items = r["lease"]
+        self.lease_order.items = r["order"]
+        addr = (self.lq.answers.get("address") or "").strip()
+        self.dom_nodes["lease_print_address"].textContent = ("Space: " + addr) if addr else ""
+
+    @handle("lease_address", "change")
+    def lease_address_change(self, **event_args):
+        self.lq.answers["address"] = (self.lease_address.text or "")[:120]
+        bb.store_set("lease", self.lq.answers)
+        self._draw_lease()
+
+    @handle("lease_print", "click")
+    def lease_print_click(self, **event_args):
+        window.print()
+
+    @handle("lease_reset", "click")
+    def lease_reset_click(self, **event_args):
+        self.lq.answers = {}
+        bb.store_set("lease", {})
+        self.lease_address.text = ""
+        self._lease_questions()
+        self._draw_lease()

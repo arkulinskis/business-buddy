@@ -1,0 +1,38 @@
+<anvil-form layout="Business_Buddy.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div anvil:name="error_part" class="ui-empty sh-error">
+        <i class="ic ic-lock"></i>
+        <h1 class="sh-error-h" anvil:dom-node="err_title">This link doesn't work</h1>
+        <p anvil:dom-node="err_text"></p>
+        <div class="ui-row sh-error-actions"><a class="ui-btn primary" href="#library">Browse the guides</a><a class="ui-btn" href="#landing">What is Business Buddy?</a></div>
+      </div>
+
+      <div anvil:name="plan_part">
+        <div class="sh-banner" role="note"><i class="ic ic-lock"></i><span anvil:dom-node="banner"></span></div>
+        <div class="pl-head">
+          <span class="bb-ring lg" role="img" anvil:dom-node="ring"><span anvil:dom-node="pct"></span></span>
+          <div class="grow">
+            <h1 anvil:dom-node="title"></h1>
+            <div class="pl-meta">
+              <span class="ui-badge"><i class="ic ic-book"></i><span anvil:dom-node="guide_name"></span></span>
+              <span class="ui-badge" anvil:dom-node="area_badge"><i class="ic ic-pin"></i><span anvil:dom-node="area"></span></span>
+              <span class="ui-badge" anvil:dom-node="date_badge"><i class="ic ic-calendar"></i><span anvil:dom-node="date"></span></span>
+              <span class="ui-badge good"><i class="ic ic-check"></i><span anvil:dom-node="count"></span></span>
+              <span class="ui-badge" anvil:dom-node="hiring_badge"><i class="ic ic-users"></i>Hiring</span>
+            </div>
+          </div>
+          <a class="ui-btn" anvil:dom-node="guide_link"><i class="ic ic-book"></i>Read the guide</a>
+        </div>
+        <p class="small muted sh-updated" anvil:dom-node="updated"></p>
+        <anvil-component type="RepeatingPanel" name="phases_panel" prop:item_template="Business_Buddy.Items.PlanPhase"></anvil-component>
+        <section class="ui-card sh-cta">
+          <div class="bb-awning"></div>
+          <h2>Opening a business in Montréal too?</h2>
+          <p>Business Buddy is free: 30 guides with the permits in the right order, real costs, and your own launch plan to share like this one.</p>
+          <div class="ui-row"><a class="ui-btn primary" anvil:dom-node="own_link"><i class="ic ic-rocket"></i>Start my own plan</a><a class="ui-btn" href="#library">Browse the guides</a></div>
+        </section>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

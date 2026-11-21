@@ -13,6 +13,7 @@ class Plan(PlanTemplate):
         #plan/<id>                  the checklist: the guide's phases and tasks, tick + private note
         #plan/<id>/budget           the editable startup cost sheet with totals
         #plan/<id>/details          name, borough, opening date, hiring (adds the employer steps), delete
+    "Share with an advisor" (Dialogs/SharePlan) makes a read-only #shared/<token> link (Pages/Shared).
     Items/PlanPhase + Items/Task and Items/BudgetRow call back into this page (host).
     Server: create_plan, get_plan, set_task, set_note, save_costs, update_plan, delete_plan."""
 
@@ -232,6 +233,12 @@ class Plan(PlanTemplate):
             self.plan = r["plan"]
             state.toast("Budget saved", "ok")
             self.draw()
+
+    # ---- sharing (Dialogs/SharePlan: a read-only #shared/<token> link for an advisor)
+    @handle("share_button", "click")
+    def share_button_click(self, **event_args):
+        from ...Dialogs.SharePlan import SharePlan
+        alert(SharePlan(self.plan_id, self.plan.get("title") or ""), buttons=[], role="app-dialog", dismissible=True)
 
     # ---- details
     @handle("save_details_button", "click")

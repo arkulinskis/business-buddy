@@ -33,7 +33,10 @@
               <span class="ui-badge" anvil:dom-node="hiring_badge"><i class="ic ic-users"></i>Hiring</span>
             </div>
           </div>
-          <a class="ui-btn" anvil:dom-node="guide_link"><i class="ic ic-book"></i>Read the guide</a>
+          <div class="pl-head-actions">
+            <anvil-component type="Button" name="share_button" prop:text="Share with an advisor" prop:role='["btn", "ic-link"]'></anvil-component>
+            <a class="ui-btn" anvil:dom-node="guide_link"><i class="ic ic-book"></i>Read the guide</a>
+          </div>
         </div>
         <nav class="ui-tabs" aria-label="Plan">
           <a anvil:name="tab_checklist"><i class="ic ic-list"></i>Checklist</a>

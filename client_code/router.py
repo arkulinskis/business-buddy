@@ -26,6 +26,7 @@ PAGES = {
     "plan": ("user", "Launch plan"),
     "profile": ("user", "Your profile"),
     "admin": ("admin", "Admin"),
+    "shared": (None, "Shared launch plan"),
 }
 # The main menu (header + phone tab bar): (page, label, icon, who). Visitors see the public ones.
 NAV = [("home", "Home", "home", "user"), ("library", "Guides", "grid", None), ("basics", "Basics", "map", None),
@@ -87,6 +88,9 @@ def _form(name):
     if name == "profile":
         from .Pages.Profile import Profile
         return Profile
+    if name == "shared":
+        from .Pages.Shared import Shared
+        return Shared
     from .Pages.Admin import Admin
     return Admin
 

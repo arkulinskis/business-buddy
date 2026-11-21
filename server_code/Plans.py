@@ -182,6 +182,8 @@ def delete_plan(plan_id):
     r = _mine(plan_id)
     if r is None:
         return C.ok()
+    from . import Shares  # its advisor links go first (Shares imports this module)
+    Shares.drop_for_plan(r)
     r.delete()
     return C.ok()
 

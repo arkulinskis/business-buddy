@@ -7,7 +7,8 @@
      client/server Python file, type-checked against Anvil's API stubs. Kit files shared by all apps (SEO, legal) are
      reported but don't fail the check.
   2. node --check on the JavaScript engines in theme/assets.
-  3. Asset hashes in anvil.yaml are current (tools/assets.py).
+  3. The crawlable guide pages' content (server_code/kb_pages.py) matches bb.js (tools/export_kb.py --check), and the
+     asset hashes in anvil.yaml are current (tools/assets.py).
   4. Server tests (tools/testing/test_server.py, strict Anvil mock).
   5. The design check (APP_MAKER/tools/design_check.py): printed as a note, never fails the run.
 The CLI: APP_MAKER/vendor/anvil-cli (found automatically), `anvil` on PATH, or ANVIL_CLI=<path>.
@@ -80,6 +81,9 @@ def main():
     js = sorted((ROOT / "theme" / "assets").glob("*.js"))
     errs = [p.name + ": " + run(["node", "--check", str(p)]).stderr.strip() for p in js if run(["node", "--check", str(p)]).returncode]
     step("JavaScript parses (%d files)" % len(js), not errs, "\n".join(errs))
+    r = run([sys.executable, "-I", str(ROOT / "tools" / "export_kb.py"), "--check"])
+    step("guide pages content current (server_code/kb_pages.py vs bb.js)", r.returncode == 0,
+         (r.stdout + r.stderr).strip() + "\n  Fix: python -I tools/export_kb.py")
     r = run([sys.executable, str(ROOT / "tools" / "assets.py")])
     step("asset hashes", r.returncode == 0, r.stdout + r.stderr)
     if "updated" in r.stdout:

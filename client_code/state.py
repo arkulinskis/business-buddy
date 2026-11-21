@@ -141,6 +141,31 @@ def feedback():
         window.open("https://prepsto.com/#f/zgumsku", "_blank", "noopener")
 
 
+SITE = "https://business-buddy.anvil.app"  # the public address shared links use (crawlable /guides pages, #shared plans)
+
+
+def copy_text(text, title="Copy this link"):
+    """Copy to the clipboard with a toast; where the browser refuses, show the text to copy by hand."""
+    try:
+        window.navigator.clipboard.writeText(text)
+        toast("Link copied: paste it anywhere.", "ok")
+    except Exception:
+        from anvil import alert
+        alert(text, title=title)
+
+
+def share_link(title, url):
+    """The phone's share sheet when there is one, else copy the link."""
+    nav = window.navigator
+    if nav.get("share"):
+        try:
+            nav.share({"title": title, "url": url})
+        except Exception:
+            pass  # the share sheet was closed
+        return
+    copy_text(url)
+
+
 # ---------------------------------------------------------------- accessibility (WCAG AA)
 # app-kit.js already makes msg-error/msg-note Labels speak and .ui-seg toggles say which one is on.
 def control(component):

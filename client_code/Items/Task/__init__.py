@@ -7,7 +7,8 @@ from ... import bb, router, state
 
 class Task(TaskTemplate):
     """Plan checklist: one task (tick, description, the Basics topic it relates to, a private note).
-    item = {t (task from bb.phases), host (the Plan page), phase (its PlanPhase)}."""
+    item = {t (task from bb.phases), host (the Plan page), phase (its PlanPhase)}.
+    A host with readonly=True (Pages/Shared, an advisor's view) gets a disabled tick and no note editing."""
 
     def __init__(self, **properties):
         super().__init__(**properties)
@@ -27,7 +28,12 @@ class Task(TaskTemplate):
             n["topic_name"].textContent = topic["title"]
         else:
             n["topic"].remove()
+        self.readonly = bool(getattr(self.host, "readonly", False))
         state.set_control_attr(self.check, "aria-label", t["t"])
+        if self.readonly:
+            self.check.enabled = False
+            self.note_link.visible = False
+            n["row"].classList.add("is-readonly")
         state.set_control_attr(self.note_box, "maxlength", "1500")
         self.editing = False
         self.draw()
@@ -44,6 +50,8 @@ class Task(TaskTemplate):
         self.note_editor.visible = self.editing
 
     def _toggle(self, on):
+        if self.readonly:
+            return
         self.check.checked = on
         self.dom_nodes["row"].classList.toggle("is-done", on)
         self.host.tick(self.item["t"]["id"], on, self.item["phase"], self)

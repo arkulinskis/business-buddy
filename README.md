@@ -26,8 +26,16 @@ Members turn a guide into a private launch plan (checklist, notes, budget, openi
   permits, MAPAQ food permits, construction licences (RBQ/CMEQ/CMMTQ), insurance, hiring, partners, consumer
   protection, Law 25, marketing. Each has the basics and an "Advanced: going deeper" part.
 - **Tools** (`#tools/<tool>`): permit finder (questions → the permits and registrations that apply, with why), break-even,
-  GST/QST calculator, $30,000 small-supplier tracker, hourly rate, "which structure?" quiz. Answers stay in the browser.
+  GST/QST calculator, $30,000 small-supplier tracker, hourly rate, "which structure?" quiz, and **Before you sign the
+  lease** (`#tools/lease`): 9 chip questions about the space (borough confirmation, previous use, renovations, food,
+  alcohol, sign, terrace, PIIA street, a similar business nearby) give a red/amber/green verdict with what to ask the
+  borough, what to put in the lease and the permits in order (the certificate of occupancy first), each with its
+  official page; a Print button makes a sheet for the permit counter. Answers stay in the browser.
 - **Glossary** (`#glossary`): 42 French ⇄ English terms from the forms and counters, filterable.
+- **Crawlable guide pages** (`/guides`, `/guides/<slug>`): every guide as plain server-rendered HTML for search engines
+  and link previews (permits, costs, the money, tips, pitfalls, roadmap, sources, the check date; canonical, Open Graph
+  and JSON-LD tags; works without JavaScript at 390 px), with buttons into the app and a **Share** button
+  (`navigator.share` or copy). The in-app guide has a Share button too, which shares the `/guides/<slug>` address.
 - A landing page, sign-up, feedback form, Privacy & Terms (with a "general information, not advice" clause).
 
 **For members:**
@@ -38,6 +46,10 @@ Members turn a guide into a private launch plan (checklist, notes, budget, openi
   on any step, a budget sheet pre-filled with the guide's typical costs, details (name, borough, opening date, "I'll hire"
   adds the employer steps), delete. Up to 12 plans each; private.
 - **Save** any guide or topic to the dashboard.
+- **Share with an advisor** (on a plan): a read-only link (`#shared/<token>`) for a PME MTL or Futurpreneur advisor.
+  The link page shows the checklist with ticks disabled, the guide, borough and opening date, the notes only if the
+  owner switches them on, and the owner's first name only (never an email or the budget). The dialog shows how often
+  the link was opened; **Stop sharing** turns it off at once.
 
 **For admins** (`#admin`; your admin email (App Secret `admin_emails`) becomes an admin on first sign-in):
 - **Overview:** people, admins, new feedback, launch plans, helpful votes.

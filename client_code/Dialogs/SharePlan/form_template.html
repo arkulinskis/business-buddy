@@ -1,0 +1,32 @@
+<div class="ui sp-dialog">
+  <h2 class="dlg-h">Share with an advisor</h2>
+  <p class="muted sp-intro">Free advisors at PME MTL, Futurpreneur or your bank can follow your progress before you meet. They see your checklist <b>read-only</b>: never your email, never your budget.</p>
+
+  <!-- not shared yet -->
+  <div anvil:name="off_part" class="ui-stack">
+    <anvil-component type="CheckBox" name="notes_new" prop:text="Include my notes on the steps" prop:checked="false"></anvil-component>
+    <div class="ui-row end">
+      <anvil-component type="Button" name="close_button" prop:text="Not now" prop:role='["btn", "btn-ghost"]'></anvil-component>
+      <anvil-component type="Button" name="create_button" prop:text="Create a read-only link" prop:role='["btn", "btn-primary", "ic-link"]'></anvil-component>
+    </div>
+  </div>
+
+  <!-- shared -->
+  <div anvil:name="on_part" class="ui-stack">
+    <label class="ui-field"><span>Anyone with this link can see the plan</span>
+      <div class="sp-link-row">
+        <anvil-component type="TextBox" name="link_box"></anvil-component>
+        <anvil-component type="Button" name="copy_button" prop:text="Copy" prop:role='["btn", "btn-primary", "ic-copy"]'></anvil-component>
+      </div>
+    </label>
+    <anvil-component type="CheckBox" name="notes_box" prop:text="Include my notes on the steps"></anvil-component>
+    <p class="small muted sp-views"><i class="ic ic-users"></i> <span anvil:dom-node="views"></span></p>
+    <div class="ui-row">
+      <anvil-component type="Button" name="stop_button" prop:text="Stop sharing" prop:role='["btn", "btn-danger", "ic-x"]'></anvil-component>
+      <span class="ui-spacer"></span>
+      <anvil-component type="Button" name="done_button" prop:text="Done" prop:role='["btn"]'></anvil-component>
+    </div>
+  </div>
+
+  <anvil-component type="Label" name="message" prop:role='["msg-error"]' prop:visible="false"></anvil-component>
+</div>

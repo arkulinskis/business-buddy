@@ -97,3 +97,9 @@ class Guide(GuideTemplate):
     @handle("print_button", "click")
     def print_button_click(self, **event_args):
         window.print()
+
+    @handle("share_button", "click")
+    def share_button_click(self, **event_args):
+        """Share the guide's crawlable page (/guides/<slug>): it unfurls well in chat apps and works without the app."""
+        state.share_link(self.g["name"] + " in Montréal: permits, costs and first steps", "%s/guides/%s" % (state.SITE, self.g["slug"]))
+

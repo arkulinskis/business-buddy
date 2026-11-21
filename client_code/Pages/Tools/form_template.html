@@ -12,6 +12,7 @@
         <a href="#tools/threshold" anvil:name="tab_threshold"><i class="ic ic-flag"></i>$30k tracker</a>
         <a href="#tools/rate" anvil:name="tab_rate"><i class="ic ic-clock"></i>Hourly rate</a>
         <a href="#tools/structure" anvil:name="tab_structure"><i class="ic ic-scale"></i>Which structure?</a>
+        <a href="#tools/lease" anvil:name="tab_lease"><i class="ic ic-key"></i>Before the lease</a>
       </nav>
 
       <!-- permit finder -->
@@ -127,6 +128,37 @@
             <a class="ui-btn sm" href="#topic/partners" anvil:name="sq_partners">Starting with a partner</a>
           </div>
           <p class="small muted">A rule-of-thumb quiz, not tax advice.</p>
+        </div>
+      </div>
+
+      <!-- before you sign the lease -->
+      <div class="tl-grid ls-grid" anvil:name="lease_part">
+        <div class="ui-card ls-questions">
+          <h2 class="tl-form-h">Before you sign the lease</h2>
+          <p class="muted small">A lease on a space where your business isn't allowed is the costliest mistake. Answer for the space you're looking at, then take the printout to the borough's permit counter.</p>
+          <label class="ui-field ls-address"><span>Address of the space <em>(optional, for your printout)</em></span><anvil-component type="TextBox" name="lease_address" prop:placeholder="e.g. 1234 rue Wellington, Verdun"></anvil-component></label>
+          <anvil-component type="RepeatingPanel" name="lease_panel" prop:item_template="Business_Buddy.Items.Question"></anvil-component>
+          <anvil-component type="Label" name="lease_progress" prop:role='["fine-print"]'></anvil-component>
+        </div>
+        <div class="ui-card ls-result">
+          <div class="ls-verdict" anvil:dom-node="lease_verdict">
+            <span class="ls-dot" aria-hidden="true"></span>
+            <div><anvil-component type="Label" name="lease_headline" prop:role='["tl-big", "tl-big-sm"]'></anvil-component>
+              <anvil-component type="Label" name="lease_summary"></anvil-component></div>
+          </div>
+          <p class="ls-printed-address" anvil:dom-node="lease_print_address"></p>
+          <h3 class="ls-h"><i class="ic ic-chat"></i>Ask the borough</h3>
+          <anvil-component type="RepeatingPanel" name="lease_ask" prop:item_template="Business_Buddy.Items.LeaseItem"></anvil-component>
+          <p class="small muted" anvil:name="lease_ask_none">Answer the questions: what to ask the permit counter appears here.</p>
+          <h3 class="ls-h"><i class="ic ic-edit"></i>Put in the lease</h3>
+          <anvil-component type="RepeatingPanel" name="lease_lease" prop:item_template="Business_Buddy.Items.LeaseItem"></anvil-component>
+          <h3 class="ls-h"><i class="ic ic-stamp"></i>Permits, in order</h3>
+          <anvil-component type="RepeatingPanel" name="lease_order" prop:item_template="Business_Buddy.Items.LeaseItem" prop:role='["ls-order"]'></anvil-component>
+          <div class="ui-row ls-actions">
+            <anvil-component type="Button" name="lease_print" prop:text="Print for the permit counter" prop:role='["btn", "btn-primary", "ic-print"]'></anvil-component>
+            <anvil-component type="Button" name="lease_reset" prop:text="Start over" prop:role='["btn", "btn-ghost", "ic-refresh"]'></anvil-component>
+          </div>
+          <p class="small muted">General information from the City's and Québec's official pages (checked November 2026), not legal advice. Rules differ by borough: <a href="#topic/commercial-lease">commercial leases</a> and <a href="#topic/occupancy-permit">zoning and the certificate of occupancy</a> go deeper.</p>
         </div>
       </div>
     </div>
